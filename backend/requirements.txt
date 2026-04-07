@@ -7,13 +7,13 @@ pydantic
 requests
 httpx
 alembic
-python-jose
-passlib
-cryptography
+python-jose[cryptography]
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
 google-api-python-client
 google-auth
 google-auth-httplib2
 google-genai
 anthropic
 googlemaps
-bcrypt
+tenacity
