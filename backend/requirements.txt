@@ -79,7 +79,7 @@ pydantic==2.12.5
 pydantic_core==2.41.5
 PyGetWindow==0.0.9
 Pygments==2.19.2
-pyinstaller==6.14.2
+pyinstaller>=6.15.0
 pyinstaller-hooks-contrib==2025.8
 PyMsgBox==2.0.1
 pyparsing==3.2.5
