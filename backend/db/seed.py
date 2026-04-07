@@ -15,7 +15,7 @@ from db.models import (
     Hospital, HospitalWard, Bed, EMTUser, HospitalUser, InventoryItem,
 )
 
-pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__truncate_error=False)
 
 
 # ─── Hospital source data ─────────────────────────────────────────────────────

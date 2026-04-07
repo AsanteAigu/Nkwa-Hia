@@ -31,8 +31,14 @@ GOOGLE_MAPS_API_KEY= os.getenv("GOOGLE_MAPS_API_KEY")
 async def lifespan(_app: FastAPI):
     print(f"[Nkwa Hia] Starting v{APP_VERSION} in '{APP_ENV}' mode")
     print(f"[Nkwa Hia] CORS origins: {ALLOWED_ORIGINS}")
+
     await create_all_tables()
-    await seed_all()
+
+    try:
+        await seed_all()
+    except Exception as e:
+        print(f"[Nkwa Hia] Seeding skipped due to error: {e}")
+
     print("[Nkwa Hia] PostgreSQL ready.")
     yield
     print("[Nkwa Hia] Shutting down.")
