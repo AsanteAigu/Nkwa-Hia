@@ -1,0 +1,153 @@
+:root {
+  /* Colors */
+  --brand-navy: #1A2E44;
+  --brand-blue: #006DB7;
+  --brand-red: #C8102E;
+  --brand-teal: #00857C;
+  --bg-page: #F7F8FA;
+  --bg-card: #FFFFFF;
+  --text-main: #1A2E44;
+  --text-muted: #6B7280;
+  --border-light: #D6DDE6;
+  
+  /* Status Colors from Public Portal */
+  --status-green: #2E7D32;
+  --status-green-bg: #E8F5E9;
+  --status-yellow: #F9A825;
+  --status-yellow-bg: #FFF8E1;
+  --status-orange: #E65100;
+  --status-orange-bg: #FBE9E7;
+  --status-red: #D32F2F;
+  --status-red-bg: #FFEBEE;
+  
+  /* Typography */
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'DM Serif Display', serif;
+  
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.heading-serif {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+/* Premium Buttons */
+button {
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  min-height: 44px; /* Mobile tap target */
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--brand-blue);
+  color: white;
+  padding: 0 1.5rem;
+}
+.btn-primary:hover {
+  background-color: #005691;
+}
+
+.btn-red {
+  background-color: var(--brand-red);
+  color: white;
+  padding: 0 1.5rem;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0 1.5rem;
+}
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon {
+  background: white;
+  border: 1px solid var(--border-light);
+  min-width: 44px;
+  color: var(--text-main);
+}
+.btn-icon:hover {
+  background-color: #F3F4F6;
+}
+
+/* Inputs */
+input, select {
+  font-family: var(--font-body);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  min-height: 44px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: var(--text-main);
+  background-color: white;
+}
+input:focus, select:focus {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: -1px;
+}
+
+/* Premium Card */
+.card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero Section */
+.hero-header {
+  background-color: var(--brand-navy);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 1.5rem;
+  background-image: radial-gradient(circle at top right, rgba(0, 109, 183, 0.2) 0%, transparent 60%);
+}
+
+.logo-box {
+  background-color: var(--brand-blue);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

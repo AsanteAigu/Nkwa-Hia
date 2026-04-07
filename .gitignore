@@ -1,0 +1,19 @@
+# Environment files — NEVER commit these
+backend/.env
+backend/serviceAccountKey.json
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+
+# Node
+frontend/public_portal/node_modules/
+frontend/hospital_portal/node_modules/
+frontend/emt_portal/node_modules/
+frontend/public_portal/dist/
+frontend/hospital_portal/dist/
+frontend/emt_portal/dist/
+
+# OS
+.DS_Store
+Thumbs.db

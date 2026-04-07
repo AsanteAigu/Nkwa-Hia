@@ -1,0 +1,1206 @@
+/* ══════════════════════════════════════════════════
+   EMT PORTAL — Design System
+   Consistent with Nkwa Hia Public Portal aesthetic:
+   - Libre Baskerville headings, DM Sans body
+   - Brand tokens matching public_portal/index.css
+   ══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ─── Tokens ──────────────────────────────────────── */
+:root {
+  --brand-blue:       #006DB7;
+  --brand-blue-deep:  #004F8C;
+  --brand-blue-light: #E8F3FB;
+  --brand-navy:       #1A2E44;
+  --brand-red:        #C8102E;
+  --brand-red-deep:   #9B0D1E;
+  --brand-amber:      #D4820A;
+
+  --bg:               #FFFFFF;
+  --bg-soft:          #F7F8FA;
+  --bg-muted:         #EFF2F5;
+  --bg-card:          #FFFFFF;
+  --surface:          #F0F4F8;
+  --border:           #D6DDE6;
+  --border-soft:      #EBF0F5;
+
+  --text-h:           #1A2E44;
+  --text-body:        #2D3E50;
+  --text-secondary:   #5B6F84;
+  --text-muted:       #8FA0B4;
+  --text-inv:         #FFFFFF;
+
+  --status-green:     #006B40;
+  --status-green-bg:  #E6F5EE;
+  --status-red:       #9B0D1E;
+  --status-red-bg:    #FDEAEC;
+
+  --shadow-sm: 0 1px 3px rgba(26,46,68,0.08), 0 1px 2px rgba(26,46,68,0.04);
+  --shadow-md: 0 4px 16px rgba(26,46,68,0.10), 0 1px 4px rgba(26,46,68,0.06);
+  --shadow-lg: 0 8px 32px rgba(26,46,68,0.12), 0 2px 8px rgba(26,46,68,0.06);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+}
+
+/* ─── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { max-width: 100vw; overflow-x: hidden; height: 100%; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg-soft);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  color: var(--text-h);
+  line-height: 1.2;
+}
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+a { color: var(--brand-blue); text-decoration: none; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ─── Animations ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-beacon {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.7); opacity: 0; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.fade-up  { animation: fadeUp 0.45s ease both; }
+.fade-in  { animation: fadeIn 0.35s ease both; }
+
+/* ══════════════════════════════════════════════════
+   LOGIN PAGE
+   ══════════════════════════════════════════════════ */
+.emt-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-navy);
+  padding: 24px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.emt-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 110% 70% at 60% 40%, rgba(200,16,46,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(0,109,183,0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.emt-login-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+}
+
+.emt-login-header {
+  background: var(--brand-navy);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 2px solid var(--brand-red);
+}
+
+.emt-logo-wrap {
+  width: 40px;
+  height: 40px;
+  background: var(--brand-red);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.emt-login-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.emt-login-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.emt-login-body {
+  padding: 24px;
+}
+
+.emt-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.emt-role-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.emt-role-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--role-border, var(--border));
+  border-radius: var(--radius-lg);
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.emt-role-btn:hover {
+  background: var(--role-bg, var(--bg-soft));
+  border-color: var(--role-color, var(--brand-blue));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.emt-role-icon { flex-shrink: 0; }
+
+.emt-role-text { flex: 1; }
+
+.emt-role-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-h);
+  margin-bottom: 2px;
+}
+
+.emt-role-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.emt-role-arrow {
+  font-size: 18px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.emt-login-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.emt-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  margin-bottom: 16px;
+  transition: color 0.15s;
+}
+.emt-back-btn:hover { color: var(--brand-blue); }
+
+.emt-error-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--status-red-bg);
+  color: var(--status-red);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(155,13,30,0.2);
+}
+
+.emt-form { display: flex; flex-direction: column; gap: 14px; }
+
+.emt-field { display: flex; flex-direction: column; gap: 6px; }
+.emt-field label { font-size: 13px; font-weight: 600; color: var(--text-h); }
+
+.emt-field input {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--text-body);
+  background: var(--bg-soft);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.emt-field input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(0,109,183,0.1);
+}
+
+.emt-submit-btn {
+  padding: 14px;
+  width: 100%;
+  background: var(--brand-red);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+.emt-submit-btn:hover:not(:disabled) {
+  background: var(--brand-red-deep);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.emt-submit-btn.driver { background: var(--brand-blue); }
+.emt-submit-btn.driver:hover:not(:disabled) { background: var(--brand-blue-deep); }
+.emt-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.emt-creds-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+/* ══════════════════════════════════════════════════
+   DASHBOARD SHARED
+   ══════════════════════════════════════════════════ */
+.emt-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-soft);
+}
+
+/* Topbar */
+.emt-topbar {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.emt-topbar.paramedic { background: var(--brand-navy); border-bottom: 3px solid var(--brand-red); }
+.emt-topbar.driver    { background: var(--brand-navy); border-bottom: 3px solid var(--brand-blue); }
+
+.emt-topbar-left { display: flex; align-items: center; gap: 12px; }
+
+.emt-topbar-icon {
+  width: 38px; height: 38px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.emt-topbar-icon.red { background: var(--brand-red); }
+.emt-topbar-icon.blue { background: var(--brand-blue); }
+
+.emt-topbar-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.emt-topbar-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+
+.emt-topbar-right { display: flex; align-items: center; gap: 10px; }
+
+.emt-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.emt-live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4CD896;
+  position: relative;
+  flex-shrink: 0;
+}
+.emt-live-dot::after {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 50%;
+  background: #4CD896;
+  animation: pulse-beacon 1.8s ease-in-out infinite;
+}
+
+.emt-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.8);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.emt-logout-btn:hover { background: rgba(255,255,255,0.15); }
+
+.emt-refresh-btn {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.8);
+  transition: all 0.2s;
+}
+.emt-refresh-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* Dashboard body */
+.emt-dashboard-body {
+  flex: 1;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+/* ══════════════════════════════════════════════════
+   PARAMEDIC — VITALS FORM
+   ══════════════════════════════════════════════════ */
+.emt-vitals-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.emt-form-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.emt-form-header h2 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.emt-form-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.emt-vital-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.emt-vital-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.emt-vital-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.emt-vital-input-wrap input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-h);
+  background: var(--bg-soft);
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+.emt-vital-input-wrap input::-webkit-outer-spin-button,
+.emt-vital-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.emt-vital-input-wrap input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background: #fff;
+}
+
+.emt-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.emt-bp-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.emt-bp-slash { font-size: 28px; color: var(--border); }
+.emt-unit-mmhg { margin-left: 4px; }
+
+.emt-vital-hint {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+/* GCS Slider */
+.emt-gcs-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.emt-gcs-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to right, #C8102E 0%, #D4820A 40%, #006B40 100%);
+  outline: none;
+}
+.emt-gcs-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px solid var(--brand-blue);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.emt-gcs-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+.emt-gcs-value { text-align: right; flex-shrink: 0; }
+.emt-gcs-num { font-size: 28px; font-weight: 700; font-family: 'Libre Baskerville', serif; }
+.emt-gcs-denom { font-size: 14px; color: var(--text-muted); }
+.emt-gcs-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.emt-gcs-track { display: flex; gap: 4px; margin-top: 8px; }
+.emt-gcs-tick {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-soft);
+  transition: background 0.2s;
+}
+.emt-gcs-tick.active { background: var(--tick-color, var(--brand-blue)); }
+
+/* Symptoms */
+.emt-symptoms-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-body);
+  background: var(--bg-soft);
+  resize: vertical;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+}
+.emt-symptoms-input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background: #fff;
+}
+
+/* GPS */
+.emt-gps-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.emt-gps-display {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-soft);
+  font-family: 'DM Sans', monospace;
+}
+
+.emt-gps-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--brand-blue-light);
+  border: 1.5px solid var(--brand-blue);
+  color: var(--brand-blue);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.emt-gps-btn:hover { background: var(--brand-blue); color: #fff; }
+.emt-gps-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Submit */
+.emt-btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--brand-navy);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-md);
+}
+.emt-btn-submit:hover:not(:disabled) {
+  background: var(--brand-blue-deep);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+.emt-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* ─── AI Loading ──────────────────────────────────── */
+.emt-ai-loading {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.emt-ai-pulse {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 4px solid var(--brand-blue-light);
+  border-top-color: var(--brand-blue);
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.emt-ai-steps { text-align: left; display: inline-flex; flex-direction: column; gap: 10px; }
+
+.emt-ai-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  animation: stepIn 0.4s ease both;
+}
+
+.emt-step-check {
+  width: 20px; height: 20px;
+  background: var(--status-green-bg, #E6F5EE);
+  color: var(--status-green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   AI RESULT CARD
+   ══════════════════════════════════════════════════ */
+.emt-result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.emt-result-sev-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+}
+
+.emt-sev-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.emt-result-reasoning {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.emt-result-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.emt-reasoning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.emt-reasoning-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* Primary rec */
+.emt-rec-primary {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(135deg, rgba(0,109,183,0.03) 0%, transparent 100%);
+}
+
+.emt-rec-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-amber);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.emt-rec-eyebrow.backup { color: var(--text-muted); }
+
+.emt-rec-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 19px;
+  color: var(--text-h);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.emt-rec-name.backup { font-size: 14px; }
+
+.emt-rec-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.emt-rec-type-pill {
+  font-size: 11px; font-weight: 600;
+  padding: 2px 8px;
+  background: var(--brand-blue-light);
+  color: var(--brand-blue);
+  border-radius: 12px;
+}
+.emt-rec-eta { font-size: 12px; color: var(--text-secondary); }
+
+.emt-rec-explain {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.emt-rec-depts { display: flex; flex-wrap: wrap; gap: 5px; }
+.emt-dept-chip {
+  font-size: 11px; font-weight: 600;
+  padding: 3px 9px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+/* Backup */
+.emt-rec-backup {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-soft);
+}
+
+/* Result actions */
+.emt-result-actions {
+  padding: 14px 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.emt-btn-ghost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.emt-btn-ghost:hover { background: var(--bg-muted); color: var(--text-body); }
+
+.emt-btn-dispatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  padding: 12px;
+  background: var(--brand-red);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.emt-btn-dispatch:hover { background: var(--brand-red-deep); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.emt-btn-dispatch:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ─── Dispatched card ─────────────────────────────── */
+.emt-dispatched-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  padding: 36px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.emt-dispatched-icon { margin-bottom: 14px; }
+.emt-dispatched-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  color: var(--text-h);
+  margin-bottom: 6px;
+}
+.emt-dispatched-id { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.emt-dispatched-hosp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-blue);
+  margin-bottom: 8px;
+}
+.emt-dispatched-sev { font-size: 13px; font-weight: 700; }
+
+/* ══════════════════════════════════════════════════
+   DRIVER — DASHBOARD
+   ══════════════════════════════════════════════════ */
+.emt-driver-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.emt-driver-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 12px 10px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.emt-stat-num {
+  display: block;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.emt-stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Dispatch cards */
+.emt-dispatch-section { margin-bottom: 24px; }
+
+.emt-dispatch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.emt-dispatch-card:hover { box-shadow: var(--shadow-md); }
+
+.emt-dispatch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-soft);
+}
+
+.emt-dispatch-id {
+  font-family: 'DM Sans', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.emt-dispatch-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.emt-dispatch-sev-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.emt-dispatch-sev-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+}
+
+.emt-dispatch-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.emt-dispatch-vitals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.emt-v-chip {
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px;
+  background: var(--brand-blue-light);
+  color: var(--brand-blue);
+  border-radius: 12px;
+}
+
+.emt-dispatch-destination {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.emt-dest-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.emt-dest-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px;
+  color: var(--text-h);
+  margin-bottom: 2px;
+}
+
+.emt-dest-meta { font-size: 12px; color: var(--text-secondary); }
+
+.emt-dispatch-symptoms {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.45;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.emt-dispatch-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.emt-btn-navigate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--brand-blue);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.emt-btn-navigate:hover { background: var(--brand-blue-deep); transform: translateY(-1px); }
+
+.emt-status-btns { flex: 1; display: flex; justify-content: flex-end; }
+
+.emt-status-btn {
+  padding: 9px 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+.emt-status-btn.enroute { background: rgba(0,109,183,0.1); color: var(--brand-blue); }
+.emt-status-btn.enroute:hover { background: var(--brand-blue); color: #fff; }
+.emt-status-btn.arrived { background: var(--status-green-bg, #E6F5EE); color: var(--status-green); }
+.emt-status-btn.arrived:hover { background: var(--status-green); color: #fff; }
+
+.emt-arrived-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--status-green);
+}
+
+/* Empty state */
+.emt-empty-state {
+  text-align: center;
+  padding: 60px 24px;
+}
+.emt-empty-icon { color: var(--border); margin-bottom: 16px; }
+.emt-empty-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  color: var(--text-h);
+  margin-bottom: 8px;
+}
+.emt-empty-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+
+/* ─── Spinner ─────────────────────────────────────── */
+.emt-spinner {
+  display: inline-block;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+.emt-spinner.sm { width: 14px; height: 14px; }
+
+/* ─── Responsive ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .emt-bp-row { flex-wrap: wrap; gap: 8px; }
+  .emt-driver-stats { grid-template-columns: repeat(2, 1fr); }
+  .emt-result-actions { flex-direction: column; }
+  .emt-btn-dispatch { width: 100%; }
+}
+
+/* ══════════════════════════════════════════════════
+   VOICE-TO-TEXT — Symptom Dictation
+   ══════════════════════════════════════════════════ */
+
+/* Mic / Dictate button */
+.emt-mic-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid var(--brand-blue);
+  background: var(--brand-blue-light);
+  color: var(--brand-blue);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.emt-mic-btn:hover {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+/* Recording state — red pulsing ring */
+.emt-mic-btn.recording {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+  color: #fff;
+  animation: mic-pulse 1.4s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(200,16,46,0.4);
+}
+
+@keyframes mic-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(200,16,46,0.45); }
+  60%  { box-shadow: 0 0 0 8px rgba(200,16,46,0); }
+  100% { box-shadow: 0 0 0 0   rgba(200,16,46,0); }
+}
+
+/* Live interim transcript box */
+.emt-voice-interim {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(200,16,46,0.05);
+  border: 1.5px solid rgba(200,16,46,0.2);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--brand-red-deep);
+  font-style: italic;
+  line-height: 1.45;
+  margin-bottom: 8px;
+  min-height: 36px;
+  animation: fadeIn 0.2s ease;
+}
+
+.emt-voice-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-red);
+  flex-shrink: 0;
+  margin-top: 3px;
+  animation: pulse-beacon 1.2s ease-in-out infinite;
+}
+
+/* Textarea glow while listening */
+.emt-symptoms-input.voice-active {
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 3px rgba(200,16,46,0.1);
+  background: #fff;
+}
+
+/* Clear button */
+.emt-clear-text-btn {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s;
+}
+.emt-clear-text-btn:hover {
+  color: var(--brand-red);
+}
+
