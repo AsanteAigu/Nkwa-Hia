@@ -12,12 +12,15 @@ _raw_url = os.getenv(
 )
 DATABASE_URL = _raw_url.replace("postgresql://", "postgresql+asyncpg://", 1)
 
+_connect_args = {"ssl": "require"} if "supabase.co" in DATABASE_URL else {}
+
 engine = create_async_engine(
     DATABASE_URL,
     echo=False,
     pool_pre_ping=True,
     pool_size=10,
     max_overflow=20,
+    connect_args=_connect_args,
 )
 
 AsyncSessionLocal = async_sessionmaker(
