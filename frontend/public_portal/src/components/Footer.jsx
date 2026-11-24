@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 export default function Footer() {
   return (
     <footer className="footer">
@@ -6,7 +7,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="footer-logo-icon">✚</div>
+              <div className="footer-logo-icon"><Plus size={22} strokeWidth={3} /></div>
               <span className="footer-logo-name">Nkwa Hia</span>
             </div>
             <p className="footer-tagline">

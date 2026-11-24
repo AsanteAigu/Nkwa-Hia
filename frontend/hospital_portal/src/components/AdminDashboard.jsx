@@ -7,6 +7,7 @@ import {
 import {
   LayoutDashboard, BedDouble, Archive, Activity,
   AlertCircle, CheckCircle, Search, RefreshCw,
+  Check as CheckIcon, X as XIcon,
 } from 'lucide-react';
 
 // ward name display helper
@@ -141,7 +142,7 @@ const AdminDashboard = () => {
               })}
             </div>
             <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', fontSize: '0.7rem', color: 'var(--text-muted)', flexWrap: 'wrap' }}>
-              <span>Oxygen: {ward.oxygen_status ? '✓ Yes' : '✗ No'}</span>
+              <span className="icon-inline" style={{ gap: 3 }}>Oxygen: {ward.oxygen_status ? <><CheckIcon size={12} /> Yes</> : <><XIcon size={12} /> No</>}</span>
               {ward.ventilators_available > 0 && <span>· Ventilators: {ward.ventilators_available}</span>}
             </div>
           </div>

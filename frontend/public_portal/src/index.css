@@ -1091,7 +1091,8 @@ button { font-family: var(--font-sans); cursor: pointer; border: none; backgroun
 }
 .age-card.selected { border-color: var(--brand-blue); background: rgba(0,109,183,0.07); }
 .age-card:hover:not(.selected) { border-color: var(--text-muted); }
-.age-card-icon { font-size: 1.3rem; margin-bottom: 4px; }
+.age-card-icon { display: flex; align-items: flex-end; justify-content: center; height: 26px; margin-bottom: 4px; color: var(--text-secondary); }
+.age-card.selected .age-card-icon { color: var(--brand-blue); }
 .age-card-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
 .age-card.selected .age-card-label { color: var(--brand-blue); }
 
@@ -1510,3 +1511,7 @@ button { font-family: var(--font-sans); cursor: pointer; border: none; backgroun
 .backend-ok .backend-status-dot { background: #4CAF50; }
 .backend-err .backend-status-dot { background: #D32F2F; }
 .backend-loading .backend-status-dot { background: #F9A825; animation: pulse 1s infinite; }
+
+/* Inline SVG icon + label alignment */
+.icon-inline { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
+.icon-inline > svg { flex-shrink: 0; }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useEmt } from '../context/EmtContext.jsx';
-import { AlertCircle, Ambulance, ArrowLeft, Shield, Truck } from 'lucide-react';
+import { AlertCircle, Ambulance, ArrowLeft, ArrowRight, Shield, Truck } from 'lucide-react';
 
 const ROLES = [
   {
@@ -79,7 +79,7 @@ export default function EmtLogin() {
                     <div className="emt-role-title">{r.title}</div>
                     <div className="emt-role-desc">{r.desc}</div>
                   </div>
-                  <div className="emt-role-arrow">→</div>
+                  <div className="emt-role-arrow"><ArrowRight size={18} /></div>
                 </button>
               ))}
             </div>
@@ -143,7 +143,9 @@ export default function EmtLogin() {
                 {loading ? (
                   <span className="emt-spinner" />
                 ) : (
-                  role === 'paramedic' ? '🚑 Access Paramedic Dashboard' : '🚐 Access Driver Dashboard'
+                  role === 'paramedic'
+                    ? <span className="icon-inline"><Ambulance size={18} /> Access Paramedic Dashboard</span>
+                    : <span className="icon-inline"><Truck size={18} /> Access Driver Dashboard</span>
                 )}
               </button>
             </form>

@@ -1,4 +1,4 @@
-import { X, Phone, Clock, MapPin, Navigation } from 'lucide-react'
+import { X, Phone, Clock, MapPin, Navigation, Check, AlertTriangle } from 'lucide-react'
 import { STATUS_COLORS } from '../App'
 
 // Backend stores ward types as UPPER_CASE; display them as Title Case
@@ -106,8 +106,8 @@ export default function HospitalModal({ hospital, onClose, onTriage }) {
                         <span> / {ward.total_beds}</span>
                       </div>
                       {ward.oxygen_status !== undefined && (
-                        <div style={{ fontSize: '0.68rem', color: ward.oxygen_status ? '#2E7D32' : '#D32F2F', marginTop: 3 }}>
-                          {ward.oxygen_status ? '✓ O₂ available' : '⚠ O₂ limited'}
+                        <div className="icon-inline" style={{ gap: 3, fontSize: '0.68rem', color: ward.oxygen_status ? '#2E7D32' : '#D32F2F', marginTop: 3 }}>
+                          {ward.oxygen_status ? <><Check size={11} /> O₂ available</> : <><AlertTriangle size={11} /> O₂ limited</>}
                         </div>
                       )}
                     </div>
@@ -120,7 +120,7 @@ export default function HospitalModal({ hospital, onClose, onTriage }) {
           {/* Capacity note */}
           {hospital.status === 'RED' && (
             <div className="error-banner" style={{ marginBottom: 0 }}>
-              ⚠ This facility is currently at full capacity. Routing to another hospital is recommended.
+              <AlertTriangle size={15} /> This facility is currently at full capacity. Routing to another hospital is recommended.
             </div>
           )}
         </div>

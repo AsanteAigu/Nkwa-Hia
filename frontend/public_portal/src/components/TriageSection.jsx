@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Mic, MicOff, MapPin, Loader, Brain, Zap } from 'lucide-react'
+import { Mic, MicOff, MapPin, Loader, Brain, Zap, AlertTriangle } from 'lucide-react'
 import ResultPanel from './ResultPanel'
 
 const CONDITION_TAGS = [
@@ -7,11 +7,27 @@ const CONDITION_TAGS = [
   'Trauma / Injury', 'Labour / Delivery', 'Child Emergency', 'Unconscious',
 ]
 
+// Age-group glyphs: one standing figure drawn at growing scale, the senior with a cane.
+function AgeIcon({ group, size = 26 }) {
+  const scale = { child: 0.62, teen: 0.8, adult: 1, senior: 1 }[group]
+  const shift = group === 'senior' ? -2 : 0
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <g transform={`translate(${12 + shift} 21) scale(${scale}) translate(-12 -21)`}>
+        <circle cx="12" cy="4.5" r="1.6" vectorEffect="non-scaling-stroke" />
+        <path d="M12 8v6M9 20l3-6 3 6M7 10l5-1.5 5 1.5" vectorEffect="non-scaling-stroke" />
+      </g>
+      {group === 'senior' && <path d="M17 10v10M17 10a1.6 1.6 0 0 1 3.2 0" />}
+    </svg>
+  )
+}
+
 const AGE_GROUPS = [
-  { id: 'child',  icon: '👶', label: 'Child',  value: 'child'  },
-  { id: 'teen',   icon: '🧒', label: 'Teen',   value: 'teen'   },
-  { id: 'adult',  icon: '🧑', label: 'Adult',  value: 'adult'  },
-  { id: 'senior', icon: '👴', label: 'Senior', value: 'senior' },
+  { id: 'child',  label: 'Child',  value: 'child'  },
+  { id: 'teen',   label: 'Teen',   value: 'teen'   },
+  { id: 'adult',  label: 'Adult',  value: 'adult'  },
+  { id: 'senior', label: 'Senior', value: 'senior' },
 ]
 
 const SEVERITY_LABELS = ['Mild', '', 'Moderate', '', 'Critical']
@@ -124,8 +140,8 @@ export default function TriageSection({
             </ul>
 
             <div style={{ marginTop: 28, padding: '16px', background: 'var(--bg-soft)', borderRadius: 12, border: '1px solid var(--border)' }}>
-              <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 6 }}>
-                ⚠ Important Notice
+              <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <AlertTriangle size={14} /> Important Notice
               </p>
               <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                 This tool is a routing aid, not a diagnostic service. For a life-threatening emergency,
@@ -232,7 +248,7 @@ export default function TriageSection({
                           className={`age-card ${ageGroup === ag.value ? 'selected' : ''}`}
                           onClick={() => setAgeGroup(ag.value)}
                         >
-                          <div className="age-card-icon">{ag.icon}</div>
+                          <div className="age-card-icon"><AgeIcon group={ag.value} /></div>
                           <div className="age-card-label">{ag.label}</div>
                         </button>
                       ))}

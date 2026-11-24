@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Layers, Navigation, RefreshCw } from 'lucide-react'
+import { Layers, Navigation, RefreshCw, AlertTriangle } from 'lucide-react'
 import { STATUS_COLORS } from '../App'
 
 const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -271,7 +271,7 @@ export default function MapSection({
           {/* Error overlay */}
           {mapError && (
             <div className="map-loading-overlay">
-              <span style={{ color: 'var(--brand-red)' }}>⚠ {mapError}</span>
+              <span className="icon-inline" style={{ color: 'var(--brand-red)' }}><AlertTriangle size={15} /> {mapError}</span>
             </div>
           )}
 
@@ -280,8 +280,9 @@ export default function MapSection({
               position: 'absolute', bottom: 12, left: 12, right: 12,
               background: '#FFEBEE', borderRadius: 8, padding: '10px 14px',
               fontSize: '0.82rem', color: '#B71C1C',
+              display: 'flex', alignItems: 'center', gap: 8,
             }}>
-              ⚠ Could not load hospital data from backend: {error}
+              <AlertTriangle size={15} style={{ flexShrink: 0 }} /> Could not load hospital data from backend: {error}
             </div>
           )}
         </div>

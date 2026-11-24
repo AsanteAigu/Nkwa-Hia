@@ -31,7 +31,7 @@ const getHospIdFromIndex = (index) => {
 };
 
 async function run() {
-  console.log('🔧 Fixing mockApi.js - Deduplicating and syncing with credentials...');
+  console.log('[FIX] Fixing mockApi.js - Deduplicating and syncing with credentials...');
 
   const content = fs.readFileSync(CREDENTIALS_PATH, 'utf8');
   const sections = content.split('=====================================================');
@@ -222,7 +222,7 @@ export const mockFetch = async (url, options = {}) => {
 `;
 
   fs.writeFileSync(MOCK_API_PATH, dbCode);
-  console.log(`✅ Successfully fixed mockApi.js. Sync complete!`);
+  console.log(`[OK] Successfully fixed mockApi.js. Sync complete!`);
 }
 
 run();

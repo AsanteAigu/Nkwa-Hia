@@ -49,7 +49,7 @@ export async function syncWardToBackend(hospitalId, wardName, bedsAvailable) {
     if (!res.ok) {
       console.warn(`[Sync] Backend rejected update for ${hospitalId}/${wardType}: ${res.status}`)
     } else {
-      console.debug(`[Sync] ✓ ${hospitalId} / ${wardType} → ${bedsAvailable} beds available`)
+      console.debug(`[Sync] OK ${hospitalId} / ${wardType} -> ${bedsAvailable} beds available`)
     }
   } catch (err) {
     // Backend offline — swallow silently so the hospital portal still works locally

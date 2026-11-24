@@ -151,3 +151,7 @@ input:focus, select:focus {
   align-items: center;
   justify-content: center;
 }
+
+/* Inline SVG icon + label alignment */
+.icon-inline { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
+.icon-inline > svg { flex-shrink: 0; }

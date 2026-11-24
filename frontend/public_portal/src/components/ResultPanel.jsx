@@ -136,7 +136,7 @@ export default function ResultPanel({ loading, result, error, hospitals, onSelec
         )}
 
         <p style={{ marginTop: 16, fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-          ⚠ These are routing recommendations based on real-time availability, not medical diagnoses.
+          <AlertTriangle size={12} style={{ verticalAlign: '-2px', marginRight: 4 }} />These are routing recommendations based on real-time availability, not medical diagnoses.
           Always follow the guidance of a qualified healthcare professional.
           Powered by {aiProvider === 'claude' ? 'Claude (Anthropic)' : 'Gemini (Google)'}.
         </p>

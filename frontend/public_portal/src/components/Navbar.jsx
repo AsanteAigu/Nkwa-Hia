@@ -1,4 +1,4 @@
-import { Moon, Sun, Phone } from 'lucide-react'
+import { Moon, Sun, Phone, Plus } from 'lucide-react'
 
 export default function Navbar({ theme, toggleTheme, backendStatus }) {
   return (
@@ -6,7 +6,7 @@ export default function Navbar({ theme, toggleTheme, backendStatus }) {
       <div className="container navbar-inner">
         {/* Brand */}
         <a href="/" className="navbar-brand">
-          <div className="navbar-brand-icon">✚</div>
+          <div className="navbar-brand-icon"><Plus size={22} strokeWidth={3} /></div>
           <div className="navbar-brand-text">
             <span className="navbar-brand-name">Nkwa Hia</span>
             <span className="navbar-brand-sub">Greater Accra Emergency Health Portal</span>

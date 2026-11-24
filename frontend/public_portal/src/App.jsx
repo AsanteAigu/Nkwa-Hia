@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Ambulance } from 'lucide-react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import MapSection from './components/MapSection'
@@ -192,7 +193,7 @@ export default function App() {
           </div>
         </div>
         <a href="tel:193" className="ambulance-btn-utility">
-          🚑 193 Ambulance
+          <Ambulance size={15} /> 193 Ambulance
         </a>
       </div>
 

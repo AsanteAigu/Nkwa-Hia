@@ -106,7 +106,7 @@ const HOSPITALS = [
 ];
 
 async function run() {
-  console.log('🚀 INITIALIZING STABLE SYSTEM-WIDE ENCRYPTION...');
+  console.log('[INIT] INITIALIZING STABLE SYSTEM-WIDE ENCRYPTION...');
 
   let txFile = `GHANA EMERGENCY HEALTH GRID — OFFICIAL FACILITY LEDGER\n`;
   txFile += `Data Version: 3.1 (Stable slugs)\n`;
@@ -190,18 +190,18 @@ async function run() {
   // Write Database
   const dbData = `import bcrypt from 'bcryptjs';\n\nexport const mockDB = {\n  hospitals: ${JSON.stringify(updatedHospitals, null, 2)},\n  users: ${JSON.stringify(newUsers, null, 2)}\n};\n\nexport const mockFetch = (url, options) => { return Promise.resolve({ ok: true, json: () => Promise.resolve({}) }); };`;
   fs.writeFileSync(MOCK_API_PATH, dbData);
-  console.log(`✅ Database stabilized: ${MOCK_API_PATH}`);
+  console.log(`[OK] Database stabilized: ${MOCK_API_PATH}`);
 
   // Write Text File
   fs.writeFileSync(OUTPUT_PATH, txFile);
-  console.log(`✅ Facility Ledger synchronized: ${OUTPUT_PATH}`);
+  console.log(`[OK] Facility Ledger synchronized: ${OUTPUT_PATH}`);
 
-  console.log('\n🔍 PERFORMING AUTOMATED TALLY CHECK...');
+  console.log('\n[CHECK] PERFORMING AUTOMATED TALLY CHECK...');
   const verifyDB = JSON.parse(JSON.stringify(updatedHospitals));
   if (verifyDB.length === HOSPITALS.length) {
-    console.log(`🎯 TALLY VALID: ${verifyDB.length}/59 Hospitals indexed successfully.`);
+    console.log(`[OK] TALLY VALID: ${verifyDB.length}/59 Hospitals indexed successfully.`);
   } else {
-    console.error('❌ TALLY ERROR: Hospital count mismatch!');
+    console.error('[ERROR] TALLY ERROR: Hospital count mismatch!');
   }
 }
 

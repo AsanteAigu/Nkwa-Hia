@@ -9,6 +9,7 @@ import {
   Package, Search, Edit2, CheckCircle, AlertTriangle,
   XCircle, Download, Check, BedDouble, Clock, TrendingDown,
   TrendingUp, RefreshCw,
+  CheckCircle2, ArrowRight as ArrowRightIcon,
 } from 'lucide-react';
 
 const BED_COLORS = {
@@ -200,8 +201,8 @@ const StaffInventory = () => {
             })}
           </div>
 
-          <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            ✓ Changes are persisted to PostgreSQL and reflected on the public portal immediately.
+          <p className="icon-inline" style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            <CheckCircle2 size={13} /> Changes are persisted to PostgreSQL and reflected on the public portal immediately.
           </p>
         </div>
       </div>
@@ -321,7 +322,7 @@ const StaffInventory = () => {
                         {log.diff > 0 ? `+${log.diff}` : log.diff} units
                       </div>
                       <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                        {log.old_quantity} → {log.new_quantity}
+                        <span className="icon-inline" style={{ gap: 4 }}>{log.old_quantity} <ArrowRightIcon size={11} /> {log.new_quantity}</span>
                       </div>
                     </div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', minWidth: 80, textAlign: 'right' }}>

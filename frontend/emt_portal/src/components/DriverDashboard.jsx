@@ -107,7 +107,7 @@ function DispatchCard({ dispatch, onStatusChange }) {
               background: dispatch.assignedBed.status === 'occupied' ? 'rgba(0,107,64,0.08)' : 'rgba(0,109,183,0.08)',
               borderRadius: 6, padding: '4px 8px', display: 'inline-block' }}>
               {dispatch.assignedBed.status === 'occupied'
-                ? `✓ Bed ${dispatch.assignedBed.bed_number} — Patient Admitted`
+                ? <span className="icon-inline"><CheckCircle size={13} /> Bed {dispatch.assignedBed.bed_number} — Patient Admitted</span>
                 : `Bed ${dispatch.assignedBed.bed_number} reserved`}
             </div>
           )}
@@ -136,7 +136,7 @@ function DispatchCard({ dispatch, onStatusChange }) {
             </button>
             {gpsError && (
               <div style={{ fontSize: 11, color: '#9A6300', marginTop: 5, display: 'flex', alignItems: 'center', gap: 4 }}>
-                ⚠ {gpsError}
+                <AlertTriangle size={12} /> {gpsError}
               </div>
             )}
           </div>

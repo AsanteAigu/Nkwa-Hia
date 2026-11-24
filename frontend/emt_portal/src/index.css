@@ -220,7 +220,7 @@ a { color: var(--brand-blue); text-decoration: none; }
 }
 
 .emt-role-arrow {
-  font-size: 18px;
+  display: flex;
   color: var(--text-muted);
   flex-shrink: 0;
 }
@@ -1204,3 +1204,8 @@ a { color: var(--brand-blue); text-decoration: none; }
   color: var(--brand-red);
 }
 
+
+/* Inline SVG icon + label alignment */
+.icon-inline { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
+.icon-inline > svg { flex-shrink: 0; }
+.icon-spin { animation: spin 1s linear infinite; }

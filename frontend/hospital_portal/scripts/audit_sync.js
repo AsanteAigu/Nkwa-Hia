@@ -28,9 +28,9 @@ async function verifyAll() {
   });
 
   if (issues.length === 0) {
-      console.log(`✅ All ${mockHospitals.length} hospitals are perfectly synchronized between mockApi.js and hospital_credentials.txt.`);
+      console.log(`[OK] All ${mockHospitals.length} hospitals are perfectly synchronized between mockApi.js and hospital_credentials.txt.`);
   } else {
-      console.log(`❌ Found ${issues.length} synchronization issues:`);
+      console.log(`[ERROR] Found ${issues.length} synchronization issues:`);
       console.log(issues.join('\n'));
   }
 }

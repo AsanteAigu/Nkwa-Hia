@@ -3,6 +3,7 @@ import { useEmt } from '../context/EmtContext.jsx';
 import {
   Activity, MapPin, Heart, Wind, Brain, FileText,
   CheckCircle, LogOut, AlertTriangle, Navigation, ChevronRight, Mic, MicOff,
+  Star, ArrowLeft, X, Check, Loader,
 } from 'lucide-react';
 
 const SEV_COLORS = {
@@ -45,7 +46,7 @@ function AiResultCard({ result, onConfirmDispatch, onReset }) {
       {/* Bed reservation */}
       {assigned_bed && (
         <div style={{ background: '#E8F5E9', border: '1px solid #2E7D32', borderRadius: 10, padding: '12px 16px', marginBottom: 12, fontSize: 13 }}>
-          <span style={{ fontWeight: 700, color: '#2E7D32' }}>✓ Bed Reserved: </span>
+          <span className="icon-inline" style={{ fontWeight: 700, color: '#2E7D32' }}><CheckCircle size={14} /> Bed Reserved:</span>{' '}
           <span style={{ color: '#1B5E20' }}>{assigned_bed.bed_number} · {assigned_bed.ward_type} ward</span>
         </div>
       )}
@@ -53,7 +54,7 @@ function AiResultCard({ result, onConfirmDispatch, onReset }) {
       {/* Primary recommendation */}
       {primary && (
         <div className="emt-rec-primary">
-          <div className="emt-rec-eyebrow"><span>★</span> PRIMARY DESTINATION</div>
+          <div className="emt-rec-eyebrow"><Star size={12} fill="currentColor" /> PRIMARY DESTINATION</div>
           <div className="emt-rec-name">{primary.hospital?.name}</div>
           <div className="emt-rec-meta">
             <span className="emt-rec-type-pill">{primary.hospital?.type}</span>
@@ -79,7 +80,7 @@ function AiResultCard({ result, onConfirmDispatch, onReset }) {
 
       {/* Actions */}
       <div className="emt-result-actions">
-        <button className="emt-btn-ghost" onClick={onReset}>← Recalculate</button>
+        <button className="emt-btn-ghost" onClick={onReset}><span className="icon-inline"><ArrowLeft size={15} /> Recalculate</span></button>
         <button className="emt-btn-dispatch" onClick={() => onConfirmDispatch(result)}>
           <CheckCircle size={17} />
           Confirm &amp; Dispatch Driver
@@ -322,7 +323,9 @@ export default function ParamedicDashboard() {
               </div>
               {vitals.spo2 && (
                 <div className="emt-vital-hint" style={{ color: vitals.spo2 < 90 ? '#C8102E' : vitals.spo2 < 94 ? '#D4820A' : '#006B40' }}>
-                  {vitals.spo2 < 85 ? '⚠ Critical hypoxia' : vitals.spo2 < 90 ? '⚠ Severe hypoxia' : vitals.spo2 < 94 ? 'Below normal' : 'Normal range'}
+                  {vitals.spo2 < 90
+                    ? <span className="icon-inline"><AlertTriangle size={13} /> {vitals.spo2 < 85 ? 'Critical hypoxia' : 'Severe hypoxia'}</span>
+                    : vitals.spo2 < 94 ? 'Below normal' : 'Normal range'}
                 </div>
               )}
             </div>
@@ -445,7 +448,7 @@ export default function ParamedicDashboard() {
                     className="emt-clear-text-btn"
                     onClick={() => set('symptoms', '')}
                   >
-                    ✕ Clear
+                    <span className="icon-inline"><X size={12} /> Clear</span>
                   </button>
                 </div>
               )}
@@ -458,7 +461,9 @@ export default function ParamedicDashboard() {
               </div>
               <div className="emt-gps-row">
                 <div className="emt-gps-display" style={gpsing && !vitals.lat ? { color: 'var(--brand-amber)', fontStyle: 'italic' } : {}}>
-                  {gpsing && !vitals.lat ? '📍 Locating…' : vitals.locationLabel || 'Location not captured'}
+                  {gpsing && !vitals.lat
+                    ? <span className="icon-inline"><Loader size={14} className="icon-spin" /> Locating…</span>
+                    : vitals.locationLabel || 'Location not captured'}
                 </div>
                 <button type="button" className="emt-gps-btn" onClick={captureGPS} disabled={gpsing}>
                   {gpsing ? <span className="emt-spinner sm" /> : <MapPin size={15} />}
@@ -467,7 +472,7 @@ export default function ParamedicDashboard() {
               </div>
               <div className="emt-vital-hint" style={{ color: vitals.lat ? 'var(--status-green)' : 'var(--text-muted)' }}>
                 {vitals.lat
-                  ? `✓ Location captured — improves hospital routing accuracy`
+                  ? <span className="icon-inline"><CheckCircle size={13} /> Location captured — improves hospital routing accuracy</span>
                   : 'GPS improves routing accuracy. Location is not stored after dispatch.'}
               </div>
             </div>
@@ -490,7 +495,7 @@ export default function ParamedicDashboard() {
             <div className="emt-ai-steps">
               {['Reading patient vitals', 'Assessing severity score', 'Checking hospital capacity', 'Calculating optimal route', 'Generating dispatch order'].map((s, i) => (
                 <div key={i} className="emt-ai-step" style={{ animationDelay: `${i * 0.35}s` }}>
-                  <span className="emt-step-check">✓</span>{s}
+                  <span className="emt-step-check"><Check size={12} strokeWidth={3} /></span>{s}
                 </div>
               ))}
             </div>
